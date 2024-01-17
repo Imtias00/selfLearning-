@@ -1,0 +1,151 @@
+// See https://aka.ms/new-console-template for more information
+using System;
+namespace hudaiApplication
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int i = 0;
+            Console.WriteLine(int.MaxValue);
+
+            string AddressName = @"C:\\Yousra\\Imtias\\Lost\\In\\way.exe";
+            Console.WriteLine(AddressName);
+
+            // ternary operator
+            int num = 15;
+            bool isNum = num == 10 ? true : false;
+            Console.WriteLine(isNum);
+
+            //Coalescing operator
+            int? ticket = null;
+            int AvailableTickets = ticket ?? 0;
+            Console.WriteLine(AvailableTickets);
+
+            //Conversion
+
+            string add = "1000";
+            string addt = "100t";
+            int u = 0;
+            int y = int.Parse(add);
+            Console.WriteLine(y);
+            bool cov = int.TryParse(addt, out u);
+            if (cov)
+            {
+                Console.WriteLine(u);
+            }
+            else
+            {
+                Console.WriteLine("Please enter a valid Number and try again");
+            }
+
+            //string fy = "xyz";
+
+            Console.WriteLine("Enter a number:");
+            int t = int.Parse(Console.ReadLine());
+            // using switch
+            switch (t)
+            {
+                case 0:
+                    Console.WriteLine("Your number is 0");
+                    break;
+                case 1:
+                    Console.WriteLine("Your number is 1");
+                    break;
+                case 2:
+                    Console.WriteLine("Your number is 2");
+                    break;
+                default:
+                    Console.WriteLine("Your number is more than 2");
+                    break;
+            }
+            int TotalCoffeeCost = 0;
+        Start:
+
+            Console.WriteLine("1 - small, 2 - medium, 3 - large");
+            int choice = int.Parse(Console.ReadLine());
+            switch (choice)
+            {
+                case 1:
+                    TotalCoffeeCost += 1;
+                    break;
+                case 2:
+                    TotalCoffeeCost += 2;
+                    break;
+                case 3:
+                    TotalCoffeeCost += 3;
+                    break;
+                default:
+                    Console.WriteLine("Your choice {0} is invalid", choice);
+                    goto Start;
+            }
+
+        Decide:
+            Console.WriteLine("Do you want to Buy another coffee - Yes or No?");
+            String UserDes = Console.ReadLine();
+
+            switch (UserDes.ToUpper())
+            {
+                case "YES":
+                    goto Start;
+
+                case "NO":
+                    break;
+
+                default:
+                    Console.WriteLine("Your Choice {0} is Invalid. Please Try again", UserDes);
+                    goto Decide;
+            }
+
+
+
+            Console.WriteLine("Thank you for shopping with us");
+            Console.WriteLine("Bill Amount: {0}", TotalCoffeeCost);
+            string omuk = "";
+            // do-while loop
+            do
+            {
+                Console.WriteLine("Enter a New Number:");
+                int rk = int.Parse(Console.ReadLine());
+
+                int start = 0;
+
+                while (start <= rk)
+                {
+                    Console.WriteLine(start);
+                    start = start + 2;
+                }
+
+
+
+                do
+                {
+                    Console.WriteLine("Do you want to continue - yes or No?");
+                    omuk = Console.ReadLine().ToUpper();
+                    if (omuk != "YES" && omuk != "NO")
+                    {
+                        Console.WriteLine("Invalid choice Plase type Yes or no");
+                    }
+
+                } while (omuk != "YES" && omuk != "NO");
+
+            } while (omuk == "YES");
+
+
+            int[] numbers = new int[5];
+            int kt = 0;
+            // while loop
+            while(kt < numbers.Length){
+                numbers[kt] = int.Parse(Console.ReadLine());
+                kt++;
+            }
+            //foreach loop
+            foreach(int k  in numbers) { 
+            
+                Console.WriteLine(k);
+            }
+
+        }
+
+    }
+}
