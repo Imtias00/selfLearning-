@@ -1,0 +1,155 @@
+// See https://aka.ms/new-console-template for more information
+using System;
+using System.Drawing;
+namespace Application
+{
+    class Program
+    {
+        public int GetVal(int val, int val2)
+        {
+            int result;
+            if (val > val2) {
+            result = val;
+            }
+            else
+            {
+                result = val2;
+            }
+            return result;
+        }
+        public void GetArea()
+        {
+            int r,a,b;
+            r = 5;
+            a = 4;
+            b = 3;
+            Circle(r);
+            Rectangle(a, b);
+        }
+        public void Circle(int r)
+        {
+            double area;
+            area = .5 * 3.1416 * r * r;
+            Console.WriteLine("The area of the circle is:" + area);
+        }
+        public void Rectangle(int a, int b)
+        {
+            double ar = a * b;
+            Console.WriteLine("The area of the Rectangle is:" + ar);
+        }
+        public void GetResult(int g)
+        {
+            if ((g % 3 == 0) && (g % 5 == 0))
+            {
+                Console.WriteLine(g + " is divisible by both 3 and 5");
+            }
+            else if (g % 3 == 0)
+            {
+                Console.WriteLine(g + " is divisible by only 3");
+            }
+            else if (g % 5 == 0)
+            {
+                Console.WriteLine(g + " is divisible by only 5");
+            }
+            else
+            {
+                Console.WriteLine(g + " is divisible by none of them");
+            }
+        }
+
+        public void GetValue()
+        {
+            string player;
+            string team;
+            int jearsey;
+            //taking input from the user
+            player = Console.ReadLine();
+            Console.WriteLine("Player Name: " + player);
+            team = Console.ReadLine();
+            Console.WriteLine("Team Name: " + team);
+            jearsey = int.Parse(Console.ReadLine());
+            Console.WriteLine("Jearsey No: " + jearsey);
+        }
+        
+
+
+
+        static void Main(string[] args)
+        {
+            int i,n;
+            int l = 0;
+            int age;
+            string name;
+            Console.WriteLine("The number of elements in the array is:");
+            n = int.Parse(Console.ReadLine());
+            //creating array
+            int[] arr = new int[n];
+            //using for loop
+            for (i = 0; i < n; i++)
+            {
+                Console.WriteLine("Element no" + i +":");
+                arr[i] = int.Parse(Console.ReadLine());
+            }
+            Console.WriteLine("Enter Your Age:");
+            age = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter name:");
+            name = Console.ReadLine();
+            Console.WriteLine($"Name: {name.ToUpper()}");
+            Console.WriteLine("Your age is:" + age);
+            Console.WriteLine("Length of the string is:" + name.Length);
+            //using condition
+            if (age > 27)
+            {
+                Console.WriteLine("He is married");
+            }
+            else if (age < 27)
+            {
+                Console.WriteLine("He is bachelor");
+            }
+            else
+            {
+                Console.WriteLine("He is Confused about life.");
+            }
+            for(i = 0; i <= name.Length; i++)
+            {
+                if(i<name.Length)
+                {
+                    l = l + 1;
+                }
+                else
+                {
+                    l = i;
+                }
+                
+                
+            }
+            Console.WriteLine("len:" + l);
+            for(i = 0; i < n; i++)
+            {
+                Console.WriteLine(arr[i]);
+            }
+            // creating object
+            Program p = new Program();
+            int res = p.GetVal(100,200);
+            //using object to send value
+            Console.WriteLine("The bigger number is:" + res);
+
+            Program y = new Program();
+            y.GetArea();
+            Console.WriteLine("Enter a number:");
+            int g;
+            g = int.Parse(Console.ReadLine());
+            y.GetResult(g);
+
+            Program football = new Program();
+            football.GetValue();
+            //using math methods
+            Console.WriteLine(Math.Sqrt(50));
+            
+            
+           
+
+
+        }
+    }
+}
