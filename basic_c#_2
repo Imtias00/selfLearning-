@@ -99,3 +99,103 @@ namespace ProjectA.TeamA
 
     }
 }
+
+
+
+
+///
+
+using System;
+
+namespace tuki
+{
+    class Student
+    {
+        string FN;
+        string LN;
+        int age;
+
+        public Student(string fn, string ln, int ag)
+        {
+            this.FN = fn;
+            this.LN = ln;
+            this.age = ag;
+        }
+        public void Print()
+        {
+            Console.WriteLine("Name: {0} {1}", this.FN, this.LN);
+            Console.WriteLine("Age: {0}", this.age);
+        }
+
+    }
+    class Circle
+    {
+        static double pi;
+        int r;
+        static Circle()
+        {
+            Circle.pi = 3.14;
+        }
+        public Circle( int r) {
+        this.r = r;
+        }
+        public void PrintArea() {
+            double area = pi * this.r * this.r;
+            Console.WriteLine("The area of the Circle is: {0}", area);
+        
+        
+        }
+    }
+
+    public class Employee
+    {
+        public string FirstName;
+        public string LastName;
+        public string Email;
+        public void PrintName()
+        {
+            Console.WriteLine("Name: {0} {1}", FirstName , LastName);
+            
+        }
+        public void PrintSalary(float salr)
+        {
+
+        }
+    }
+    public class FullTimeEmployee : Employee
+    {
+        public float YearlySalary;
+        
+    }
+    public class PartTimeEmployee : Employee
+    {
+        public float HourlyRate;
+    }
+
+
+
+
+    class Program
+    {
+        static void Main(String[] args)
+        {
+            Student s = new Student("Yousra","Islam",23);
+            s.Print();
+            Circle c1 = new Circle(5);
+            c1.PrintArea();
+            Circle c2 = new Circle(6);
+            c2.PrintArea();
+
+            FullTimeEmployee fte = new FullTimeEmployee();
+            fte.FirstName = "Kuddus";
+            fte.LastName = "Ali";
+            fte.Email = "kuddus007@gmail.com";
+            fte.YearlySalary = 1000000;
+            fte.PrintName();
+
+        }
+    }
+
+
+
+}
