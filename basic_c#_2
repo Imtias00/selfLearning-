@@ -1,0 +1,101 @@
+// See https://aka.ms/new-console-template for more information
+using System;
+using PATA = ProjectA.TeamA;
+
+class Program
+    {
+        static void Main(String[] args)
+        {
+            int n = int.Parse(Console.ReadLine()); 
+            Program.EvenNumbers(n);
+
+            Program p = new Program();
+
+            int m = int.Parse(Console.ReadLine());
+            int o = int.Parse(Console.ReadLine());
+            int sum = p.add(m, o);
+            Console.WriteLine("Sum = {0}", sum);
+
+            int i = 0;
+            SimpleMethod( ref i);
+            Console.WriteLine(i);
+            int Total = 0;
+            int Product = 0;
+            Calculate(10, 10, out Total, out Product);
+            Console.WriteLine("Sum = {0} , Product = {1}", Total, Product);
+            Console.WriteLine("Enter the elements of the array");
+            int[] arr = new int[3];
+            foreach(int k in arr)
+            {
+                arr[k] = int.Parse(Console.ReadLine());
+            }
+            ParamMethod(1,33,44,55,44,5);
+
+            PATA.ClassA.Print();
+           
+
+    }
+        public static void ParamMethod(params int[] arr)
+        {
+            Console.WriteLine("There are {0} elements in this array", arr.Length);
+
+            foreach(int i in arr)
+            {
+                Console.WriteLine(i);
+            }
+
+
+        }
+
+
+        public static void Calculate(int a,int b, out int sum, out int product)
+        {
+            sum = a + b;
+            product = a * b;
+        }
+
+
+        public static void SimpleMethod(ref int j)
+        {
+            j = 10;
+        }
+
+
+        public int add(int a, int b)
+        {
+            return a + b;
+        }
+        
+        public static void EvenNumbers(int n)
+        {
+            int start = 0;
+            while (start <= n)
+            {
+                Console.WriteLine(start);
+                start = start + 2;
+                
+            }
+        }
+
+
+
+    }
+
+
+////
+
+
+
+using System;
+
+namespace ProjectA.TeamA
+{
+    public class ClassA
+    {
+        public static void Print()
+        {
+            Console.WriteLine("This is the Task of Team A");
+        }
+
+    }
+}
