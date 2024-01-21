@@ -1,0 +1,26 @@
+// See https://aka.ms/new-console-template for more information
+using System;
+
+namespace Gg
+{
+
+
+    class Program
+    {
+        static void Main(String[] args)
+        {
+            Students s1 = new Students();
+            s1.SetName("Kuddus Ali");
+            
+            Console.WriteLine("Name: {0}", s1.GetName());
+
+            s1.SetId(2345);
+            Console.WriteLine("Id: {0}", s1.GetId());
+
+            Console.WriteLine("Pass Mark is: {0}", s1.GetMarks());
+
+        }
+    }
+
+
+}
