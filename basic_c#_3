@@ -24,3 +24,145 @@ namespace Gg
 
 
 }
+
+
+// See https://aka.ms/new-console-template for more information
+using System;
+
+namespace Gg
+{
+
+    interface i1
+    {
+        void pprint();
+    }
+    public struct Customer
+    {
+        private string name;
+        private string address;
+        private string city;
+
+
+        public string Name
+        {
+            get { return name;}
+            set { name = value;}
+        }
+
+        public string Address
+        {
+            get { return address; }
+            set { address = value; }
+        }
+        public string City
+        {
+            get { return city; }
+            set { city = value; }
+        }
+
+        public Customer( string name, string address, string city)
+        {
+            this.name = name;
+            this.address = address;
+            this.city = city;
+        }
+
+        public void Print()
+        {
+            Console.WriteLine("Name: {0} && Address: {1} && City: {2}", this.name, this.address, this.city);
+        }
+        
+    }
+
+
+
+
+
+    class Program
+    {
+        static void Main(String[] args)
+        {
+            Students s1 = new Students();
+            s1.String = "Kuddus Ali";
+            
+            Console.WriteLine("Name: {0}", s1.String);
+
+            s1.Id = 21;
+            Console.WriteLine("Id: {0}", s1.Id);
+
+            Console.WriteLine("Pass Mark is: {0}", s1.Marks);
+
+            Customer c1 = new Customer("Yousra", "Baridhara", "Chittagong");
+
+            c1.Print();
+
+        }
+    }
+
+
+}
+
+
+
+// See https://aka.ms/new-console-template for more information
+namespace Gg
+{
+    public class Students : i1
+    {   
+        public void pprint()
+        {
+            Console.WriteLine("We are using an Interface");
+        }
+        
+        
+        private string StudentName;
+        private int StudentId;
+        private float StudentMarks = 33;
+        //private object set;
+        //private object get;
+
+        public string String
+        {
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new Exception("Name can't be null or empty");
+                }
+                this.StudentName = value;
+            }
+            get
+            {
+                return string.IsNullOrEmpty(this.StudentName) ? "No name" : this.StudentName;
+            }
+        }
+        
+        public int Id
+        {
+            set
+                {
+                if (value <= 0)
+                {
+                    throw new Exception("Id numer can't be negative");
+                }
+                this.StudentId = value;
+            }
+            get
+            {
+                return this.StudentId;
+            }
+        }
+
+
+        public float Marks
+        {
+            get
+            {
+                return this.StudentMarks;
+            }
+        }
+    }
+
+
+}
+
