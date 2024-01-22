@@ -322,3 +322,40 @@ namespace tuki
 }
 
 
+
+//file io
+
+// See https://aka.ms/new-console-template for more information
+using System;
+using System.Collections.Generic;
+using System.IO;
+
+namespace tuki
+{
+    class ExceptionHandling
+    {
+        public static void Main(string[] args)
+        {
+            try
+            {
+                StreamReader sr = new StreamReader(@"C:\Users\DELL\Desktop\Basic of c#\sample.txt");
+                Console.WriteLine(sr.ReadToEnd());
+                sr.Close();
+            }
+            catch (FileNotFoundException ex){
+                Console.WriteLine("Please check if the file {0} exists", ex.FileName);
+            }
+            catch(Exception ex) {
+
+                Console.WriteLine(ex.Message);
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine(ex.StackTrace);
+            
+            }
+        }
+    }
+
+
+}
+
