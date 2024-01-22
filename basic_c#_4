@@ -1,0 +1,254 @@
+// interface
+
+// See https://aka.ms/new-console-template for more information
+using System;
+
+namespace Y
+{
+    interface i1
+    {
+        void PrintInterface();
+    }
+
+
+    public class Animal : i1
+    {
+
+        public void PrintInterface()
+        {
+            Console.WriteLine("Who named a parrot Moses");
+        }
+
+
+    }
+
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Animal a = new Animal();
+            a.PrintInterface();
+        }
+
+    }
+}
+
+// multiple interface inheritance
+
+// See https://aka.ms/new-console-template for more information
+using System;
+
+namespace Y
+{
+    interface i1 : i2
+    {
+        void PrintInterface();
+    }
+
+
+    interface i2
+    {
+        void Print();
+    }
+
+    public class Animal : i1
+    {
+
+        public void PrintInterface()
+        {
+            Console.WriteLine("Who named a parrot Moses");
+        }
+
+        public void Print()
+        {
+            Console.WriteLine("The same man who named the rotwiler Jesus");
+        }
+    }
+
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Animal a = new Animal();
+            a.PrintInterface();
+            a.Print();
+        }
+
+    }
+}
+
+// explicit implimentation
+
+// See https://aka.ms/new-console-template for more information
+using System;
+
+namespace Y
+{
+    interface i1 : i2
+    {
+        void PrintInterface();
+    }
+
+
+    interface i2
+    {
+        void PrintInterface();
+    }
+
+    public class Animal : i1
+    {
+
+        void i1.PrintInterface()
+        {
+            Console.WriteLine("Who named a parrot Moses");
+        }
+
+        void i2.PrintInterface()
+        {
+            Console.WriteLine("The same man who named the rotwiler Jesus");
+        }
+    }
+
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Animal a = new Animal();
+            ((i1)a).PrintInterface();
+            ((i2)a).PrintInterface();
+        }
+
+    }
+}
+
+
+//abstract class
+
+    public abstract class Customer
+    {
+        public void PrintNew()
+        {
+            Console.WriteLine("This is not a abstract method");
+        }
+         public abstract void PrintN();
+    }
+    public class Seller : Customer
+    {
+        public override void PrintN()
+        {
+            Console.WriteLine("Hi there!");
+        }
+
+        
+    }
+
+
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Animal a = new Animal();
+            ((i1)a).PrintInterface();
+            ((i2)a).PrintInterface();
+            Customer c = new Seller();
+            c.PrintNew();
+            c.PrintN();
+
+        }
+
+    }
+}
+
+// multiple class inheritance using interfaces
+
+// See https://aka.ms/new-console-template for more information
+using System;
+
+namespace Y
+{
+    public delegate void WhatEverDelegate(string m);
+    interface i1 : i2
+    {
+        void PrintInterface();
+    }
+
+
+    interface i2
+    {
+        void PrintInterface();
+    }
+    interface IA
+    {
+        void MethodA();
+    }
+    class A : IA
+    {
+        public void MethodA()
+        {
+            Console.WriteLine("This is Method A");
+        }
+    }
+
+    interface IB
+    {
+        void MethodB();
+    }
+    class B : IB
+    {
+        public void MethodB()
+        {
+            Console.WriteLine("This is Method B");
+        }
+    }
+    class AB : IA, IB
+    {
+        A ar1 = new A();
+        B ar2 = new B();
+
+
+        public void MethodA()
+        {
+            ar1.MethodA();
+        }
+        public void MethodB()
+        {
+            ar2.MethodB();
+        }
+
+
+    }
+
+
+
+
+
+
+    class Program
+    {
+
+        public static void Hello(string s)
+        {
+            Console.WriteLine("the message is = {0}", s);
+        }
+        static void Main(string[] args)
+        {
+            Animal a = new Animal();
+            ((i1)a).PrintInterface();
+            ((i2)a).PrintInterface();
+            Customer c = new Seller();
+            c.PrintNew();
+            c.PrintN();
+
+            AB ab = new AB();
+            ab.MethodA();
+            ab.MethodB();
+            WhatEverDelegate del = new WhatEverDelegate(Hello);
+            del("Grrrrrrrrrr! I am Groot...");
+        }
+
+    }
+}
