@@ -1,0 +1,94 @@
+// See https://aka.ms/new-console-template for more information
+using System;
+using System.IO;
+using System.Runtime.Serialization;
+
+namespace tuki
+{
+    class InnerException
+    {
+        public static void Main(String[] args)
+        {
+            try
+            {
+                throw new UserAlreadyLoggedInException("User is logged in - no duplicate session allowed");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            try
+            {
+
+                try
+                {
+                    Console.WriteLine("Enter the Last number:");
+                    int FN = Convert.ToInt32(Console.ReadLine());
+
+                    Console.WriteLine("Enter the Second number:");
+                    int SN = Convert.ToInt32(Console.ReadLine());
+
+                    int result = FN / SN;
+
+                    Console.WriteLine("Result = {0}", result);
+                }
+                catch (Exception ex)
+                {
+
+                    string filePath = @"C:\Users\DELL\Desktop\Basic of c#\sample1.txt";
+
+
+                    if (File.Exists(filePath))
+                    {
+                        StreamWriter sw = new StreamWriter(filePath);
+                        sw.Write(ex.GetType().Name);
+                        sw.WriteLine();
+                        sw.Write(ex.Message);
+
+                        sw.Close();
+
+                        Console.WriteLine("There is a problem, Please try again later");
+                    }
+                    else
+                    {
+                        throw new FileNotFoundException(filePath + " is not present", ex);
+                    }
+
+
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine("Current Exception = {0}", exception.GetType().Name);
+
+                if (exception.InnerException != null)
+                {
+                    Console.WriteLine("Inner Exception = {0}", exception.InnerException.GetType().Name);
+                }
+            }
+
+        }
+    }
+
+    [Serializable]
+    public class UserAlreadyLoggedInException : Exception
+    {
+        public UserAlreadyLoggedInException() : base()
+        {
+
+        }
+
+        public UserAlreadyLoggedInException(string message) : base(message)
+        {
+
+        }
+        public UserAlreadyLoggedInException(string message, Exception innerException) : base(message, innerException)
+        {
+
+        }
+        public UserAlreadyLoggedInException(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+
+        }
+    }
+}
