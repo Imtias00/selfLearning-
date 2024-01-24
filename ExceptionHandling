@@ -1,0 +1,127 @@
+// See https://aka.ms/new-console-template for more information
+using System;
+
+namespace GoodGame
+{
+    class ExceptionHandlingAbuse
+    {
+        static void Main(String[] args)
+        {
+            try { 
+            Console.WriteLine("Enter a Numerator:");
+                int Numerator;
+                bool isNumeratorSuccessful = int.TryParse(Console.ReadLine(), out Numerator);
+
+                if (isNumeratorSuccessful)
+                {
+                    Console.WriteLine("Enter the Denominator:");
+                    int Denominator; 
+                    bool isDenominatorSuccessful = int.TryParse(Console.ReadLine(), out Denominator);
+                    if (isDenominatorSuccessful && Denominator != 0)
+                    {
+                        int Result = Numerator / Denominator;
+                        Console.WriteLine("The Result is: {0}", Result);
+                    }
+                    else
+                    {
+                        if(Denominator == 0)
+                        {
+                            Console.WriteLine("Denominator Can not be 0");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Please Enter a number between {0} && {1}", int.MinValue, int.MaxValue);
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Numerator must be a Valid Number between {0} && {1}", int.MinValue, int.MaxValue);
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }    
+        }
+    }
+}
+
+
+
+// enum
+
+// See https://aka.ms/new-console-template for more information
+using System;
+using System.Security.Cryptography.X509Certificates;
+
+namespace GoodMorning
+{
+    class Enums
+    {
+        static void Main(String[] args)
+        {
+            Customer[] customers = new Customer[5];
+            customers[0] = new Customer
+            {
+                Name = "Rahim",
+                Gender = Gender.Male
+            };
+            customers[1] = new Customer
+            {
+                Name = "Yousra",
+                Gender = Gender.Female
+            };
+            customers[2] = new Customer
+            {
+                Name = "Ronaldo",
+                Gender = Gender.Male
+            };
+            customers[3] = new Customer
+            {
+                Name = "Khabib",
+                Gender = Gender.Male
+            };
+            customers[4] = new Customer
+            {
+                Name = "Mirza",
+                Gender = Gender.Female
+            };
+            foreach (Customer customer in customers) {
+                Console.WriteLine("Name = {0} && Gender = {1}",customer.Name, GetGender(customer.Gender));
+            }
+            
+          
+        }
+        public static string GetGender(Gender gender)
+        {
+            switch (gender)
+            {
+                case Gender.Unknown:
+                    return "unknown";
+                case Gender.Male:
+                    return "Male";
+                case Gender.Female:
+                    return "Female";
+                default:
+                    return "Invalid data detected";
+            }
+        }
+    }
+    public enum Gender
+    {
+        Unknown,
+        Male,
+        Female
+    }
+}
+
+// See https://aka.ms/new-console-template for more information
+namespace GoodMorning
+{
+    public class Customer
+    {
+        public string Name { get; set; }
+        public Gender Gender { get; set; }
+    }
+}
