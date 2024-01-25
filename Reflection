@@ -1,0 +1,65 @@
+using System;
+using System.Reflection;
+
+
+namespace GoodMorning
+{
+    class ReflectionCodes
+    {
+        static void Main(String[] args)
+        {
+            Type T = Type.GetType("GoodMorning.Customer");
+            Console.WriteLine("Full Name = {0}", T.FullName);
+            Console.WriteLine("Just the Name = {0}", T.Name);
+            Console.WriteLine("Just the namespace = {0}", T.Namespace);
+            Console.WriteLine();
+            Console.WriteLine("Properties in Customer");
+            PropertyInfo[] properties = T.GetProperties();
+            foreach(PropertyInfo property in properties)
+            {
+                Console.WriteLine(property.PropertyType.Name + " " + property.Name);
+            }
+            Console.WriteLine();
+            Console.WriteLine("Methods in Customer Class");
+            MethodInfo[] methods = T.GetMethods();
+            foreach (MethodInfo method in methods)
+            {
+                Console.WriteLine(method.ReturnType.Name + " " + method.Name);
+            }
+        }
+    }
+}
+
+// See https://aka.ms/new-console-template for more information
+namespace GoodMorning
+{
+    public class Customer
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+        public Customer(int id, string Name)
+        {
+            this.Id = id;
+            this.Name = Name;
+        }
+        public Customer()
+        {
+            this.Id = -1;
+            this.Name = string.Empty;
+        }
+        public void PrintId()
+        {
+            Console.WriteLine("ID = {0}", this.Id);
+        }
+        public void PrintName() 
+        { 
+            Console.WriteLine("Name = {0}", this.Name); 
+        }    
+    }
+    public class CorporateCustomer
+    {
+      
+    }
+
+}
