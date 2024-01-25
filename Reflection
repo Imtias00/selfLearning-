@@ -63,3 +63,32 @@ namespace GoodMorning
     }
 
 }
+
+
+//late binding
+
+using System;
+using System.Reflection;
+
+
+namespace GoodMorning
+{
+    class ReflectionCodes
+    {
+        static void Main(String[] args)
+        {
+            //Customer customer = new Customer();
+            //string fullName = customer.GetFullName("GoodMorning", "Dhaka");
+            //Console.WriteLine("Full Name = {0}", fullName);
+            Assembly executingAssembly = Assembly.GetExecutingAssembly();
+            Type customerType = executingAssembly.GetType("GoodMorning.Customer");
+            object customerInstance = Activator.CreateInstance(customerType);
+            MethodInfo getFullNameMethod = customerType.GetMethod("GetFullName");
+            string[] parameters = new string[2];
+            parameters[0] = "Bruce";
+            parameters[1] = "Wayne";
+            string FullName = getFullNameMethod.Invoke(customerInstance, parameters);
+            Console.WriteLine("Full Name = {0}", fullName);
+        }
+    }
+}
