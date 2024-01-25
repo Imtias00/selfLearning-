@@ -125,3 +125,37 @@ namespace GoodMorning
         public Gender Gender { get; set; }
     }
 }
+
+// Attributes
+
+using System;
+using System.Security.Cryptography.X509Certificates;
+
+namespace GoodMorning
+{
+    class Program
+    {
+        private static void Main(String[] args)
+        {
+            Calculator.Add(new List<int>() { 10, 20, 30 });
+        }
+    }
+   public class Calculator
+    {
+        [ObsoleteAttribute("Use Add(List<int> Numbers) Method", true)]
+        public static int Add(int FirstNumber, int SecondNumber)
+        {
+            return FirstNumber + SecondNumber;
+        }
+        public static int Add(List<int> Numbers)
+        {
+            int sum = 0;
+            foreach(int Number in Numbers)
+            {
+                sum = sum + Number;
+            }
+            return sum;
+        }
+    }
+
+}
