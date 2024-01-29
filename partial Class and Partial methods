@@ -1,0 +1,67 @@
+// See https://aka.ms/new-console-template for more information
+using System;
+using PatrialClass;
+namespace BasicCode
+{
+    class MainClass
+    {
+        static void Main(String[] args)
+        {
+            Console.WriteLine("how you doing");
+            PartialCustomer customer = new PartialCustomer();
+            customer.firstName = "Imtias";
+            customer.lastName = "Ahmed";   
+            Console.WriteLine(customer.GetFullName());
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PatrialClass
+{
+    public partial class PartialCustomer
+    {
+        private string FirstName;
+        private string LastName;
+        public string lastName
+        {
+            get { return LastName; }
+            set { LastName = value; }
+        }
+        public string firstName
+        {
+            get { return FirstName; }
+            set { FirstName = value; }
+        }
+
+        
+        partial void SampleMethod()
+        {
+            Console.WriteLine("This  is a sample partial method");
+        }
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PatrialClass
+{
+    public partial class PartialCustomer
+    {
+        partial void SampleMethod();
+        public string GetFullName()
+        {
+            return FirstName + ", " + LastName;
+            SampleMethod();
+        }
+    }
+}
+
