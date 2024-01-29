@@ -1,0 +1,42 @@
+// See https://aka.ms/new-console-template for more information
+namespace BasicStuff
+{
+    public class Customer
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public override string ToString()
+        {
+            return this.LastName + " " + this.FirstName;
+        }
+    }
+}
+
+
+// See https://aka.ms/new-console-template for more information
+using System;
+using System.Text;
+namespace BasicStuff
+{
+    class MainClass
+    {
+        static void Main(String[] args)
+        {
+
+            StringBuilder sb = new StringBuilder("Good day");
+            sb.Append(" I ");
+            sb.Append(" Looking ");
+            sb.Append(" For ");
+            sb.Append(" A New Life ");
+            Console.WriteLine(sb.ToString());
+
+            Customer customer = new Customer();
+            customer.FirstName = "Chris";
+            customer.LastName = "Gayle";
+
+            Console.WriteLine(Convert.ToString(customer));
+        }
+
+
+    }
+}
