@@ -1,0 +1,132 @@
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace Indexers_C
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            Company company = new Company();
+            Response.Write("Name of The Employee with id = 2:" + company[2]);
+            Response.Write("<br/>");
+            Response.Write("Name of The Employee with Gender = Male:" + company["Male"]);
+            Response.Write("Before Update");
+
+            Response.Write("Total Male Employees = " + company["Male"]);
+            Response.Write("<br/>");
+            Response.Write("Total Female Employees = " + company["Female"]);
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace Indexers_C
+{
+    public class Employee
+    {
+        public int EmployeeId {  get; set; }
+        public string Name { get; set; }
+        public string Gender { get; set; }
+    }
+    public class Company
+    {
+        private List<Employee> listEmployees;
+
+        public Company()
+        {
+            listEmployees = new List<Employee>();
+            listEmployees.Add(new Employee
+            { EmployeeId = 1, Name = "Mike", Gender = "Male" });
+            listEmployees.Add(new Employee
+            { EmployeeId = 2, Name = "Pam", Gender = "Female" });
+            listEmployees.Add(new Employee
+            { EmployeeId = 3, Name = "John", Gender = "Male" });
+            listEmployees.Add(new Employee
+            { EmployeeId = 4, Name = "Maxine", Gender = "Female" });
+            listEmployees.Add(new Employee
+            { EmployeeId = 5, Name = "Emiliy", Gender = "Female" });
+            listEmployees.Add(new Employee
+            { EmployeeId = 6, Name = "Scott", Gender = "Male" });
+            listEmployees.Add(new Employee
+            { EmployeeId = 7, Name = "Todd", Gender = "Male" });
+            listEmployees.Add(new Employee
+            { EmployeeId = 8, Name = "Ben", Gender = "Male" });
+        }
+        public string this[int employeeId]
+        {
+            get
+            {
+                return listEmployees.FirstOrDefault(emp => emp.EmployeeId == employeeId).Name;
+
+            }
+            set
+            {
+                listEmployees.FirstOrDefault(emp => emp.EmployeeId == employeeId).Name = value;
+            }
+        }
+        public string this[string Gender]
+        {
+            get
+            {
+                return listEmployees.Count(emp => emp.Gender == Gender).ToString();
+
+            }
+            set
+            {
+                foreach (Employee employee in listEmployees)
+                {
+                    if(employee.Gender == Gender)
+                    {
+                        employee.Gender = value;
+                    }
+                }
+                    
+            }
+        }
+    }
+}
+
+
+optinal parameter
+
+// See https://aka.ms/new-console-template for more information
+using System;
+
+namespace GoodNight
+{
+    class Program
+    {
+        public static void Main(string[] args)
+        {
+            AddNumbers(10, 20, new int[] {30,40,50,60});
+        }
+        public static void AddNumbers(int firstNumber, int SecondNumber)
+        {
+            AddNumbers(firstNumber, SecondNumber, null);
+        }
+        public static void AddNumbers(int firstNumber, int SecondNumber, int[] restOfNumbers)
+        {
+            int result = firstNumber + SecondNumber;
+            if(restOfNumbers != null)
+            {
+                foreach(int i in restOfNumbers)
+                {
+                    result += i;
+                }
+            }
+            Console.WriteLine("Sum = " + result);
+        }
+    }
+}
+
