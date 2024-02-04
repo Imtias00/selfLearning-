@@ -1,0 +1,247 @@
+// See https://aka.ms/new-console-template for more information
+using System;
+using System.Collections;
+using System.Security;
+
+namespace Demo
+{
+    class MainClass
+    {
+        public static void Main(String[] args)
+        {
+            Country country1 = new Country() { Code = "AUS", Name = "AUSTRALIA", Capital = "Canvera" };
+            Country country2 = new Country() { Code = "BAN", Name = "Bangladesh", Capital = "Dhaka" };
+            Country country3 = new Country() { Code = "USA", Name = "United State Of America", Capital = "Washington D.C" };
+            Country country4 = new Country() { Code = "GBR", Name = "United Kingdom", Capital = "London" };
+            Country country5 = new Country() { Code = "CAN", Name = "Canada", Capital = "Ottawa" };
+
+            //List<Country> country = new List<Country>();
+            Dictionary<string, Country> dictionaryCountry = new Dictionary<string, Country>();
+            dictionaryCountry.Add(country1.Code, country1);
+            dictionaryCountry.Add(country2.Code, country2);
+            dictionaryCountry.Add(country3.Code, country3);
+            dictionaryCountry.Add(country4.Code, country4);
+            dictionaryCountry.Add(country5.Code, country5);
+
+            //country.Add(country1);
+            //country.Add(country2);
+            //country.Add(country3);
+            //country.Add(country4);
+            //country.Add(country5);
+            string strUserChoice = string.Empty;
+            do
+            {
+                Console.WriteLine("PLease enter a country code:");
+
+                string StrCountryCode = Console.ReadLine().ToUpper();
+                Country result = dictionaryCountry.ContainsKey(StrCountryCode) ? dictionaryCountry[StrCountryCode] : null;
+                if (result == null)
+                {
+                    Console.WriteLine("Country code not valid");
+                }
+                else
+                {
+                    Console.WriteLine("Name = {0}, Capital = {1}", result.Name, result.Capital);
+                }
+                do
+                {
+                    Console.WriteLine("Do you want to continue - YES or NO?");
+                    strUserChoice = Console.ReadLine().ToUpper();
+                } while (strUserChoice != "NO" && strUserChoice != "YES");
+            } while (strUserChoice == "YES");
+        }
+    }
+    public class Country
+    {
+        public string Name { get; set; }
+        public string Code { get; set; }
+        public string Capital { get; set; }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace DIctionary_OList
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Session["CountriesData"] == null)
+            {
+                Country country1 = new Country() { Code = "AUS", Name = "AUSTRALIA", Capital = "Canvera" };
+                Country country2 = new Country() { Code = "BAN", Name = "Bangladesh", Capital = "Dhaka" };
+                Country country3 = new Country() { Code = "USA", Name = "United State Of America", Capital = "Washington D.C" };
+                Country country4 = new Country() { Code = "GBR", Name = "United Kingdom", Capital = "London" };
+                Country country5 = new Country() { Code = "CAN", Name = "Canada", Capital = "Ottawa" };
+
+                //List<Country> country = new List<Country>();
+                Dictionary<string, Country> dictionaryCountry = new Dictionary<string, Country>();
+                dictionaryCountry.Add(country1.Code, country1);
+                dictionaryCountry.Add(country2.Code, country2);
+                dictionaryCountry.Add(country3.Code, country3);
+                dictionaryCountry.Add(country4.Code, country4);
+                dictionaryCountry.Add(country5.Code, country5);
+                Session["CountriesData"] = dictionaryCountry;
+            }
+        }
+        protected void txtCountryCode_textChanged(object sender, EventArgs e)
+        {
+            Dictionary<string, Country> dictionaryCountry = (Dictionary<string, Country>)Session["CountriesData"];
+            Country result = dictionaryCountry.ContainsKey(TextBox1.Text.ToUpper()) ? dictionaryCountry[TextBox1.Text.ToUpper()] : null;
+            if (result == null)
+            {
+                Console.WriteLine("Country code not valid");
+                TextBox3.Text = "";
+            }
+            else
+            {
+                TextBox2.Text = result.Name;
+                TextBox3.Text = result.Capital;
+                lblmessage.Text = "";
+            }
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace DIctionary_OList
+{
+    public class Country
+    {
+        public string Name { get; set; }
+        public string Code { get; set; }
+        public string Capital { get; set; }
+    }
+}
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="DIctionary_OList.WebForm1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div style ="font-family:Arial">
+            <table style="border: 1px solid black">
+            <tr>
+                <td>Country Code:
+                </td>
+                <td>
+                    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>Country Name:
+                </td>
+                <td>
+                    <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>Capital:
+                </td>
+                <td>
+                    <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td colspan ="2">
+                   <asp:Label ID="lblmessage" runat="server" ForeColor="Red"></asp:Label>
+                </td>
+            </tr>
+            </table>
+        </div>
+    </form>
+</body>
+</html>
+
+
+// See https://aka.ms/new-console-template for more information
+using System;
+using System.Collections;
+using System.Diagnostics.Metrics;
+using System.Runtime.Intrinsics.X86;
+namespace Demo
+{
+    class Program
+    {
+        public static void Main(String[] args)
+        {
+            Customer customer1 = new Customer()
+            {
+                ID = 101,
+                Name = "Ned",
+                Salary = 5000
+            };
+            Customer customer2 = new Customer()
+            {
+                ID = 110,
+                Name = "Jack",
+                Salary = 6000
+            };
+            Customer customer3 = new Customer()
+            {
+                ID = 102,
+                Name = "Jon",
+                Salary = 4000
+            };
+            Customer customer4 = new Customer()
+            {
+                ID = 105,
+                Name = "Robb",
+                Salary = 7000
+            };
+            Customer customer5 = new Customer()
+            {
+                ID = 108,
+                Name = "Ariya",
+                Salary = 9000
+            };
+            Stack<Customer> stackCustomer = new Stack<Customer>();
+            stackCustomer.Push(customer1);
+            stackCustomer.Push(customer2);
+            stackCustomer.Push(customer3);
+            stackCustomer.Push(customer4);
+            stackCustomer.Push(customer5);
+            Customer c = stackCustomer.Pop();
+            Console.WriteLine(c.ID + " - " + c.Name);
+            Console.WriteLine("Total Items in the Queue = " + stackCustomer.Count);
+
+
+            /* Queue<Customer> queueCustomer = new Queue<Customer>();
+             queueCustomer.Enqueue(customer1);
+             queueCustomer.Enqueue(customer2);
+             queueCustomer.Enqueue(customer3);
+             queueCustomer.Enqueue(customer4);
+             queueCustomer.Enqueue(customer5);
+             Customer c1 = queueCustomer.Dequeue();
+             Customer c = queueCustomer.Peek();
+             Console.WriteLine(c.ID + " - " + c.Name);
+             Console.WriteLine("Total Items in the Queue = " + queueCustomer.Count);
+             List<Country> country = new List<Country>();*/
+
+
+        }
+    }
+    public class Customer
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public int Salary { get; set; }
+    }
+}
